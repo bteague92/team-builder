@@ -1,57 +1,62 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
+import axios from "axios";
 
 export const Form = props => {
-  const [fName, setFName] = useState("");
-  const [lName, setLName] = useState("");
-  const [email, setEmail] = useState("");
-  const [role, setRole] = useState("");
+  const [data, setData] = useState({
+    fName: "",
+    lName: "",
+    email: "",
+    role: ""
+  });
+
+  //   const [fName, setFName] = useState("");
+  //   const [lName, setLName] = useState("");
+  //   const [email, setEmail] = useState("");
+  //   const [role, setRole] = useState("");
+
+  const changeHandler = e => {
+    e.preventDefault();
+    setData({ ...data, [e.target.name]: e.target.value });
+  };
+
+  const submitHandler = e => {
+    e.preventDefault();
+    setData({ fName: "", lName: "", email: "", role: "" });
+  };
 
   return (
     <div>
-      <h3>
-        {fName || "unknown"} {lName || "unknown"} is a {role} with an email of{" "}
-        {email}.
-      </h3>
-      <form>
-        <labal htmlFor="fNameInput">First Name</labal>
+      <form onSubmit={submitHandler}>
+        <label htmlFor="fNameInput">First Name</label>
         <input
-          onChange={e => {
-            setFName(e.target.value);
-          }}
+          onChange={changeHandler}
           id="fNameInput"
           name="fName"
           type="text"
+          value={data.fName}
         />
 
-        <labal htmlFor="lNameInput">Last Name</labal>
+        <label htmlFor="lNameInput">Last Name</label>
         <input
-          onChange={e => {
-            setLName(e.target.value);
-          }}
+          onChange={changeHandler}
           id="lNameInput"
           name="lName"
           type="text"
+          value={data.lName}
         />
 
-        <labal htmlFor="emailInput">Email</labal>
+        <label htmlFor="emailInput">Email</label>
         <input
-          onChange={e => {
-            setEmail(e.target.value);
-          }}
-          id="lNameInput"
-          name="lName"
+          onChange={changeHandler}
+          id="emailInput"
+          name="email"
           type="email"
+          value={data.email}
         />
 
-        <labal htmlFor="roleInput">Role</labal>
-        <select
-          onChange={e => {
-            setRole(e.target.value);
-          }}
-          id="roleSelect"
-          name="role"
-        >
+        <label htmlFor="roleInput">Role</label>
+        <select onChange={changeHandler} id="roleSelect" name="role">
           <option value="Front-end Engineer">Front-end Engineer</option>
           <option value="Back-end Engineer">Back-end Engineer</option>
           <option value="UI Designer">UI Designer</option>
