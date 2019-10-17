@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
-import axios from "axios";
 
 export const Form = props => {
-  const [data, setData] = useState({
+  const [person, setPerson] = useState({
     fName: "",
     lName: "",
     email: "",
     role: ""
   });
+
+  const setTeam = props.setTeam;
 
   //   const [fName, setFName] = useState("");
   //   const [lName, setLName] = useState("");
@@ -17,12 +18,13 @@ export const Form = props => {
 
   const changeHandler = e => {
     e.preventDefault();
-    setData({ ...data, [e.target.name]: e.target.value });
+    setPerson({ ...person, [e.target.name]: e.target.value });
   };
 
   const submitHandler = e => {
     e.preventDefault();
-    setData({ fName: "", lName: "", email: "", role: "" });
+    setTeam([...props.team, person]);
+    setPerson({ fName: "", lName: "", email: "", role: "" });
   };
 
   return (
@@ -34,7 +36,7 @@ export const Form = props => {
           id="fNameInput"
           name="fName"
           type="text"
-          value={data.fName}
+          value={person.fName}
         />
 
         <label htmlFor="lNameInput">Last Name</label>
@@ -43,7 +45,7 @@ export const Form = props => {
           id="lNameInput"
           name="lName"
           type="text"
-          value={data.lName}
+          value={person.lName}
         />
 
         <label htmlFor="emailInput">Email</label>
@@ -52,17 +54,17 @@ export const Form = props => {
           id="emailInput"
           name="email"
           type="email"
-          value={data.email}
+          value={person.email}
         />
 
         <label htmlFor="roleInput">Role</label>
         <select onChange={changeHandler} id="roleSelect" name="role">
-          <option value="Front-end Engineer">Front-end Engineer</option>
-          <option value="Back-end Engineer">Back-end Engineer</option>
-          <option value="UI Designer">UI Designer</option>
-          <option value="IOS Developer">IOS Developer</option>
-          <option value="Android Developer">Android Developer</option>
-          <option value="Data Scientist">Data Scientist</option>
+          <option value={person.role}>Front-end Engineer</option>
+          <option value={person.role}>Back-end Engineer</option>
+          <option value={person.role}>UI Designer</option>
+          <option value={person.role}>IOS Developer</option>
+          <option value={person.role}>Android Developer</option>
+          <option value={person.role}>Data Scientist</option>
         </select>
 
         <input type="submit" />
