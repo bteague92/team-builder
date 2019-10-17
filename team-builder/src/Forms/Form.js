@@ -30,7 +30,7 @@ export const Form = props => {
   return (
     <div>
       <form onSubmit={submitHandler}>
-        <label htmlFor="fNameInput">First Name</label>
+        <label htmlFor="fNameInput">First Name: </label>
         <input
           onChange={changeHandler}
           id="fNameInput"
@@ -39,7 +39,7 @@ export const Form = props => {
           value={person.fName}
         />
 
-        <label htmlFor="lNameInput">Last Name</label>
+        <label htmlFor="lNameInput">Last Name: </label>
         <input
           onChange={changeHandler}
           id="lNameInput"
@@ -48,7 +48,7 @@ export const Form = props => {
           value={person.lName}
         />
 
-        <label htmlFor="emailInput">Email</label>
+        <label htmlFor="emailInput">Email: </label>
         <input
           onChange={changeHandler}
           id="emailInput"
@@ -57,14 +57,20 @@ export const Form = props => {
           value={person.email}
         />
 
-        <label htmlFor="roleInput">Role</label>
-        <select onChange={changeHandler} id="roleSelect" name="role">
-          <option value={person.role}>Front-end Engineer</option>
-          <option value={person.role}>Back-end Engineer</option>
-          <option value={person.role}>UI Designer</option>
-          <option value={person.role}>IOS Developer</option>
-          <option value={person.role}>Android Developer</option>
-          <option value={person.role}>Data Scientist</option>
+        <label htmlFor="roleInput">Role: </label>
+        <select
+          onChange={changeHandler}
+          id="roleSelect"
+          name="role"
+          value={person.role}
+        >
+          <option>select a role</option>
+          <option>Front-end Engineer</option>
+          <option>Back-end Engineer</option>
+          <option>UI Designer</option>
+          <option>IOS Developer</option>
+          <option>Android Developer</option>
+          <option>Data Scientist</option>
         </select>
 
         <input type="submit" />
